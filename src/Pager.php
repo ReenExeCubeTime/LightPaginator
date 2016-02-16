@@ -22,15 +22,21 @@ class Pager implements PagerInterface
     private $count;
 
     /**
+     * @var int
+     */
+    private $pageCount;
+
+    /**
      * @var array|\Traversable
      */
     private $list;
 
-    public function __construct($currentPage, $limit, $count, $list)
+    public function __construct($currentPage, $limit, $count, $pageCount, $list)
     {
         $this->currentPage = $currentPage;
         $this->limit = $limit;
         $this->count = $count;
+        $this->pageCount = $pageCount;
         $this->list = $list;
     }
 
@@ -56,6 +62,14 @@ class Pager implements PagerInterface
     public function getCount()
     {
         return $this->count;
+    }
+
+    /**
+     * @return int
+     */
+    public function getPageCount()
+    {
+        return $this->pageCount;
     }
 
     /**

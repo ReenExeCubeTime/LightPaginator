@@ -11,10 +11,12 @@ class PagerTest extends \PHPUnit_Framework_TestCase
      * @covers \ReenExeCubeTime\LightPaginator\Pager::getCurrentPage
      * @covers \ReenExeCubeTime\LightPaginator\Pager::getLimit
      * @covers \ReenExeCubeTime\LightPaginator\Pager::getCount
+     * @covers \ReenExeCubeTime\LightPaginator\Pager::getPageCount
      * @covers \ReenExeCubeTime\LightPaginator\Pager::getList
      * @covers \ReenExeCubeTime\LightPaginator\Factory::__construct
      * @covers \ReenExeCubeTime\LightPaginator\Factory::createPager
      * @covers \ReenExeCubeTime\LightPaginator\Core::getSlice
+     * @covers \ReenExeCubeTime\LightPaginator\Core::getPageCount
      * @param ArrayAdapter $adapter
      * @param $page
      * @param $limit
