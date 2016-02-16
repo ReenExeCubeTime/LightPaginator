@@ -7,11 +7,6 @@ use ReenExeCubeTime\LightPaginator\Adapter\AdapterInterface;
 class Pager implements PagerInterface
 {
     /**
-     * @var AdapterInterface
-     */
-    private $adapter;
-
-    /**
      * @var int
      */
     private $currentPage;
@@ -22,22 +17,21 @@ class Pager implements PagerInterface
     private $limit;
 
     /**
-     * @param AdapterInterface $adapter
+     * @var int
      */
-    public function __construct(AdapterInterface $adapter)
-    {
-        $this->adapter = $adapter;
-    }
+    private $count;
 
     /**
-     * @param $page
-     * @return $this
+     * @var array|\Traversable
      */
-    public function setCurrentPage($page)
-    {
-        $this->currentPage = $page;
+    private $list;
 
-        return $this;
+    public function __construct($currentPage, $limit, $count, $list)
+    {
+        $this->currentPage = $currentPage;
+        $this->limit = $limit;
+        $this->count = $count;
+        $this->list = $list;
     }
 
     /**
@@ -46,17 +40,6 @@ class Pager implements PagerInterface
     public function getCurrentPage()
     {
         return $this->currentPage;
-    }
-
-    /**
-     * @param $limit
-     * @return $this
-     */
-    public function setLimit($limit)
-    {
-        $this->limit = $limit;
-
-        return $this;
     }
 
     /**
@@ -72,13 +55,14 @@ class Pager implements PagerInterface
      */
     public function getCount()
     {
-        return $this->adapter->getCount();
+        return $this->count;
     }
 
+    /**
+     * @return array|\Traversable
+     */
     public function getList()
     {
-        $offset = ($this->currentPage - 1) * $this->limit;
-
-        return $this->adapter->getSlice($offset, $this->limit);
+        return $this->list;
     }
 }
