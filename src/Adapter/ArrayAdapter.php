@@ -33,7 +33,7 @@ class ArrayAdapter implements AdapterInterface
     /**
      * {@inheritdoc}
      */
-    public function getNbResults()
+    public function getCount()
     {
         return count($this->array);
     }

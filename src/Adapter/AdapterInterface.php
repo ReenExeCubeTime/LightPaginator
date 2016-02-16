@@ -23,7 +23,7 @@ interface AdapterInterface
      *
      * @return integer The number of results.
      */
-    public function getNbResults();
+    public function getCount();
 
     /**
      * Returns an slice of the results.
