@@ -1,0 +1,21 @@
+{
+    "name": "reenexe-cubetime/light-paginator",
+    "repositories": [
+        {
+            "type": "git",
+            "url": "https://github.com/ReenExeCubeTime/LightPaginator"
+        }
+    ],
+    "version": "1.0.0",
+    "type": "library",
+    "require": {
+        "php": ">=5.6"
+    },
+    "minimum-stability": "dev",
+    "require-dev": {
+        "phpunit/phpunit": "4.4.*"
+    },
+    "autoload": {
+        "psr-4": {"ReenExeCubeTime\\LightPaginator\\": "src/"}
+    }
+}
