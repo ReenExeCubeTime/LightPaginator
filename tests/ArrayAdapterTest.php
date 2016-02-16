@@ -14,6 +14,6 @@ class ArrayAdapterTest extends PHPUnit_Framework_TestCase
         $adapter = new ArrayAdapter([1, 2, 3]);
 
         $this->assertSame($adapter->getSlice(1, 1), [2]);
-        $this->assertCount($adapter->getCount(), 3);
+        $this->assertSame($adapter->getCount(), 3);
     }
 }
