@@ -4,7 +4,7 @@ namespace ReenExeCubeTime\LightPaginator;
 
 use ReenExeCubeTime\LightPaginator\Adapter\AdapterInterface;
 
-class Pager
+class Pager implements PagerInterface
 {
     /**
      * @var AdapterInterface
@@ -14,7 +14,7 @@ class Pager
     /**
      * @var int
      */
-    private $page;
+    private $currentPage;
 
     /**
      * @var int
@@ -33,11 +33,19 @@ class Pager
      * @param $page
      * @return $this
      */
-    public function setPage($page)
+    public function setCurrentPage($page)
     {
-        $this->page = $page;
+        $this->currentPage = $page;
 
         return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getCurrentPage()
+    {
+        return $this->currentPage;
     }
 
     /**
@@ -54,6 +62,14 @@ class Pager
     /**
      * @return int
      */
+    public function getLimit()
+    {
+        return $this->limit;
+    }
+
+    /**
+     * @return int
+     */
     public function getCount()
     {
         return $this->adapter->getCount();
@@ -61,7 +77,7 @@ class Pager
 
     public function getList()
     {
-        $offset = ($this->page - 1) * $this->limit;
+        $offset = ($this->currentPage - 1) * $this->limit;
 
         return $this->adapter->getSlice($offset, $this->limit);
     }

@@ -2,14 +2,14 @@
 
 use ReenExeCubeTime\LightPaginator\Adapter\ArrayAdapter;
 use ReenExeCubeTime\LightPaginator\Pager;
+use ReenExeCubeTime\LightPaginator\Factory;
 
 class PagerTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @dataProvider dataProvider
-     * @covers \ReenExeCubeTime\LightPaginator\Pager::__construct
-     * @covers \ReenExeCubeTime\LightPaginator\Pager::setPage
-     * @covers \ReenExeCubeTime\LightPaginator\Pager::setLimit
+     * @covers \ReenExeCubeTime\LightPaginator\Pager::getCurrentPage
+     * @covers \ReenExeCubeTime\LightPaginator\Pager::getLimit
      * @covers \ReenExeCubeTime\LightPaginator\Pager::getCount
      * @covers \ReenExeCubeTime\LightPaginator\Pager::getList
      * @param ArrayAdapter $adapter
@@ -20,11 +20,12 @@ class PagerTest extends \PHPUnit_Framework_TestCase
      */
     public function test(ArrayAdapter $adapter, $page, $limit, $count, array $list)
     {
-        $pager = new Pager($adapter);
-        $pager
-            ->setPage($page)
-            ->setLimit($limit);
+        $factory = new Factory();
 
+        $pager = $factory->createPager($adapter, $page, $limit);
+
+        $this->assertSame($pager->getCurrentPage(), $page);
+        $this->assertSame($pager->getLimit(), $limit);
         $this->assertSame($pager->getCount(), $count);
         $this->assertSame($pager->getList(), $list);
     }
