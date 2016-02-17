@@ -2,8 +2,6 @@
 
 namespace ReenExeCubeTime\LightPaginator;
 
-use ReenExeCubeTime\LightPaginator\Adapter\AdapterInterface;
-
 class Pager implements PagerInterface
 {
     /**
@@ -22,16 +20,22 @@ class Pager implements PagerInterface
     private $count;
 
     /**
+     * @var int
+     */
+    private $pageCount;
+
+    /**
      * @var array|\Traversable
      */
-    private $list;
+    private $results;
 
-    public function __construct($currentPage, $limit, $count, $list)
+    public function __construct($currentPage, $limit, $count, $pageCount, $results)
     {
         $this->currentPage = $currentPage;
         $this->limit = $limit;
         $this->count = $count;
-        $this->list = $list;
+        $this->pageCount = $pageCount;
+        $this->results = $results;
     }
 
     /**
@@ -59,10 +63,18 @@ class Pager implements PagerInterface
     }
 
     /**
+     * @return int
+     */
+    public function getPageCount()
+    {
+        return $this->pageCount;
+    }
+
+    /**
      * @return array|\Traversable
      */
-    public function getList()
+    public function getResults()
     {
-        return $this->list;
+        return $this->results;
     }
 }

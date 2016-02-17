@@ -8,4 +8,10 @@ class Core
     {
         return ($currentPage - 1) * $limit;
     }
+
+    public function getPageCount($count, $limit)
+    {
+        return (int)ceil($count / $limit);
+    }
+
 }

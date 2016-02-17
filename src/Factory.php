@@ -29,8 +29,12 @@ class Factory
     {
         $count = $adapter->getCount();
 
-        $list = $adapter->getSlice($this->core->getOffset($page, $limit), $limit);
-
-        return new Pager($page, $limit, $count, $list);
+        return new Pager(
+            $page,
+            $limit,
+            $count,
+            $this->core->getPageCount($count, $limit),
+            $adapter->getSlice($this->core->getOffset($page, $limit), $limit)
+        );
     }
 }
