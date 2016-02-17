@@ -9,7 +9,7 @@ class PagerTest extends \PHPUnit_Framework_TestCase
     /**
      * @dataProvider dataProvider
      * @covers \ReenExeCubeTime\LightPaginator\Pager::getCurrentPage
-     * @covers \ReenExeCubeTime\LightPaginator\Pager::getLimit
+     * @covers \ReenExeCubeTime\LightPaginator\Pager::getPerPage
      * @covers \ReenExeCubeTime\LightPaginator\Pager::getCount
      * @covers \ReenExeCubeTime\LightPaginator\Pager::getPageCount
      * @covers \ReenExeCubeTime\LightPaginator\Pager::getResults
@@ -30,7 +30,7 @@ class PagerTest extends \PHPUnit_Framework_TestCase
         $pager = $factory->createPager($adapter, $page, $limit);
 
         $this->assertSame($pager->getCurrentPage(), $page);
-        $this->assertSame($pager->getLimit(), $limit);
+        $this->assertSame($pager->getPerPage(), $limit);
         $this->assertSame($pager->getCount(), $count);
         $this->assertSame($pager->getResults(), $list);
     }

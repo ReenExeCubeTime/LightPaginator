@@ -49,7 +49,7 @@ class Pager implements PagerInterface
     /**
      * @return int
      */
-    public function getLimit()
+    public function getPerPage()
     {
         return $this->limit;
     }
