@@ -8,5 +8,5 @@ interface PagerInterface
     public function getLimit();
     public function getCount();
     public function getPageCount();
-    public function getList();
+    public function getResults();
 }

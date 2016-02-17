@@ -12,10 +12,10 @@ class PagerTest extends \PHPUnit_Framework_TestCase
      * @covers \ReenExeCubeTime\LightPaginator\Pager::getLimit
      * @covers \ReenExeCubeTime\LightPaginator\Pager::getCount
      * @covers \ReenExeCubeTime\LightPaginator\Pager::getPageCount
-     * @covers \ReenExeCubeTime\LightPaginator\Pager::getList
+     * @covers \ReenExeCubeTime\LightPaginator\Pager::getResults
      * @covers \ReenExeCubeTime\LightPaginator\Factory::__construct
      * @covers \ReenExeCubeTime\LightPaginator\Factory::createPager
-     * @covers \ReenExeCubeTime\LightPaginator\Core::getSlice
+     * @covers \ReenExeCubeTime\LightPaginator\Core::getOffset
      * @covers \ReenExeCubeTime\LightPaginator\Core::getPageCount
      * @param ArrayAdapter $adapter
      * @param $page
@@ -32,7 +32,7 @@ class PagerTest extends \PHPUnit_Framework_TestCase
         $this->assertSame($pager->getCurrentPage(), $page);
         $this->assertSame($pager->getLimit(), $limit);
         $this->assertSame($pager->getCount(), $count);
-        $this->assertSame($pager->getList(), $list);
+        $this->assertSame($pager->getResults(), $list);
     }
 
     public function dataProvider()
