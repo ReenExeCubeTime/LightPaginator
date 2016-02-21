@@ -9,6 +9,7 @@
     "license": "MIT",
     "version": "1.0.0",
     "type": "library",
+    "minimum-stability": "dev",
     "require": {
         "php": ">=5.6"
     },
