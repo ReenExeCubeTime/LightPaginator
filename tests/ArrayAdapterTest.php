@@ -2,7 +2,7 @@
 
 use ReenExeCubeTime\LightPaginator\Adapter\ArrayAdapter;
 
-class ArrayAdapterTest extends PHPUnit_Framework_TestCase
+class ArrayAdapterTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @covers \ReenExeCubeTime\LightPaginator\Adapter\ArrayAdapter::__construct
