@@ -1,5 +1,6 @@
 {
     "name": "reenexe-cubetime/light-paginator",
+    "keywords": ["page","paging", "paginator", "pagination"],
     "repositories": [
         {
             "type": "git",
