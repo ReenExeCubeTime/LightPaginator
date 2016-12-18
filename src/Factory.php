@@ -46,6 +46,23 @@ class Factory
      */
     public function createSmartPager(AdapterInterface $adapter, $page, $limit)
     {
-        
+        $results = $adapter->getSlice($this->core->getOffset($page, $limit), $limit);
+
+        $count = $adapter->getCount();
+
+        $pageCount = $this->core->getPageCount($count, $limit);
+
+        if ($page > $pageCount) {
+            $page = 1;
+            $results = $adapter->getSlice($this->core->getOffset($page, $limit), $limit);
+        }
+
+        return new Pager(
+            $page,
+            $limit,
+            $count,
+            $pageCount,
+            $results
+        );
     }
 }
