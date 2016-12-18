@@ -2,9 +2,15 @@
 
 use ReenExeCubeTime\LightPaginator\Adapter\ArrayAdapter;
 use ReenExeCubeTime\LightPaginator\CompleteFactory;
+use ReenExeCubeTime\LightPaginator\Adapter\AdapterInterface;
 
 class PagerTest extends \PHPUnit_Framework_TestCase
 {
+    /**
+     * @var CompleteFactory
+     */
+    private $factory;
+
     /**
      * @dataProvider dataProvider
      * @covers \ReenExeCubeTime\LightPaginator\Pager::getCurrentPage
@@ -25,9 +31,7 @@ class PagerTest extends \PHPUnit_Framework_TestCase
      */
     public function test(ArrayAdapter $adapter, $page, $limit, $count, array $list)
     {
-        $factory = new CompleteFactory();
-
-        $pager = $factory->createPager($adapter, $page, $limit);
+        $pager = $this->factory()->createPager($adapter, $page, $limit);
 
         $this->assertSame($pager->getCurrentPage(), $page);
         $this->assertSame($pager->getPerPage(), $limit);
@@ -76,9 +80,7 @@ class PagerTest extends \PHPUnit_Framework_TestCase
      */
     public function testOutRange(ArrayAdapter $adapter, $page, $limit, $count, array $list, $expectPage = 1)
     {
-        $factory = new CompleteFactory();
-
-        $pager = $factory->createSmartPager($adapter, $page, $limit);
+        $pager = $this->factory()->createSmartPager($adapter, $page, $limit);
 
         $this->assertSame($pager->getCurrentPage(), $expectPage);
         $this->assertSame($pager->getPerPage(), $limit);
@@ -115,5 +117,35 @@ class PagerTest extends \PHPUnit_Framework_TestCase
             range(81, 100),
             5,
         ];
+    }
+
+    public function testOutRangeEmpty()
+    {
+        /* @var $adapter AdapterInterface|\PHPUnit_Framework_MockObject_MockObject */
+        $adapter = $this->getMock(AdapterInterface::class);
+
+        $adapter
+            ->expects($this->once())
+            ->method('getSlice')
+            ->will($this->returnValue([]));
+
+        $adapter
+            ->expects($this->once())
+            ->method('getCount')
+            ->will($this->returnValue(0));
+
+        $pager = $this->factory()->createSmartPager($adapter, 2, 20);
+
+        $this->assertSame($pager->getCurrentPage(), 1);
+        $this->assertSame($pager->getPerPage(), 20);
+        $this->assertSame($pager->getCount(), 0);
+        $this->assertSame($pager->getResults(), []);
+    }
+
+    private function factory()
+    {
+        return $this->factory === null
+            ? $this->factory = new CompleteFactory()
+            : $this->factory;
     }
 }
