@@ -111,6 +111,22 @@ class PagerTest extends \PHPUnit_Framework_TestCase
 
         yield [
             $adapter,
+            3,
+            100,
+            $count,
+            range(1, 100),
+        ];
+
+        yield [
+            $adapter,
+            3,
+            200,
+            $count,
+            range(1, 100),
+        ];
+
+        yield [
+            $adapter,
             5,
             20,
             $count,
