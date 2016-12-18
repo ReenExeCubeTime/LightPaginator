@@ -50,6 +50,16 @@ class Factory
 
         $count = $adapter->getCount();
 
+        if ($count === 0) {
+            return new Pager(
+                1,
+                $limit,
+                $count,
+                0,
+                []
+            );
+        }
+
         $pageCount = $this->core->getPageCount($count, $limit);
 
         if ($page > $pageCount) {
