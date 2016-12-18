@@ -37,4 +37,15 @@ class Factory
             $adapter->getSlice($this->core->getOffset($page, $limit), $limit)
         );
     }
+
+    /**
+     * @param AdapterInterface $adapter
+     * @param $page
+     * @param $limit
+     * @return PagerInterface
+     */
+    public function createSmartPager(AdapterInterface $adapter, $page, $limit)
+    {
+        
+    }
 }
