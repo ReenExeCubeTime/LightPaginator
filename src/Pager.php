@@ -29,6 +29,14 @@ class Pager implements PagerInterface
      */
     private $results;
 
+    /**
+     * Pager constructor.
+     * @param $currentPage
+     * @param $limit
+     * @param $count
+     * @param $pageCount
+     * @param $results
+     */
     public function __construct($currentPage, $limit, $count, $pageCount, $results)
     {
         $this->currentPage = $currentPage;

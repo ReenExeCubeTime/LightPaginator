@@ -45,7 +45,7 @@ class PagerTest extends \PHPUnit_Framework_TestCase
             1,
             10,
             $count,
-            range(1, 10)
+            range(1, 10),
         ];
 
         yield [
@@ -53,7 +53,7 @@ class PagerTest extends \PHPUnit_Framework_TestCase
             2,
             10,
             $count,
-            range(11, 20)
+            range(11, 20),
         ];
 
         yield [
@@ -61,7 +61,7 @@ class PagerTest extends \PHPUnit_Framework_TestCase
             5,
             15,
             $count,
-            range(61, 75)
+            range(61, 75),
         ];
     }
 
@@ -72,14 +72,15 @@ class PagerTest extends \PHPUnit_Framework_TestCase
      * @param $limit
      * @param $count
      * @param array $list
+     * @param int $expectPage
      */
-    public function testOutRange(ArrayAdapter $adapter, $page, $limit, $count, array $list)
+    public function testOutRange(ArrayAdapter $adapter, $page, $limit, $count, array $list, $expectPage = 1)
     {
         $factory = new CompleteFactory();
 
         $pager = $factory->createSmartPager($adapter, $page, $limit);
 
-        $this->assertSame($pager->getCurrentPage(), 1);
+        $this->assertSame($pager->getCurrentPage(), $expectPage);
         $this->assertSame($pager->getPerPage(), $limit);
         $this->assertSame($pager->getCount(), $count);
         $this->assertSame($pager->getResults(), $list);
@@ -95,7 +96,7 @@ class PagerTest extends \PHPUnit_Framework_TestCase
             11,
             10,
             $count,
-            range(1, 10)
+            range(1, 10),
         ];
 
         yield [
@@ -103,7 +104,16 @@ class PagerTest extends \PHPUnit_Framework_TestCase
             6,
             20,
             $count,
-            range(1, 20)
+            range(1, 20),
+        ];
+
+        yield [
+            $adapter,
+            5,
+            20,
+            $count,
+            range(81, 100),
+            5,
         ];
     }
 }
